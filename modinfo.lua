@@ -2,16 +2,14 @@
 name = "Refillable Staffs and Amulets"
 description = 
 [[
-- 原模组似乎于2023年3月15日变得不可见或已下架，因此重新上传一份，供好友使用。
-- Staffs and amulets can be refilled.
-  法杖和护身符可以被充能。
-- Staffs and amulets can be more durable or destructible.
-  法杖和护身符可以变得更加耐用或易坏。
-- Staffs and amulets can be retained with zero durability.
-  法杖和护身符可以在耐久度耗尽时被保留。
+- 2023-03-06：尝试加入骨盔、铥头、铥甲、铥棒、天气棒、晨星锤、斧镐、蝙蝠棒的耐久更改。
+
+- 2023-03-05：原模组似乎于2023年3月15日变得不可见或已下架，因此重新上传一份，供好友使用。
+
+- 原模组介绍：法杖和护身符可以被充能、变得更加耐用或易坏、可以在耐久度耗尽时被保留。
 ]]
 author = "瑶光"
-version = "2.0.1"
+version = "2.1.0"
 
 forumthread = ""
 api_version = 10
@@ -110,6 +108,47 @@ configuration_options =
         },
         default = 2.5,
 	},
+	-- 瑶光@23-03-16：护甲武器耐久的选项
+	{
+		name = "max_armor",
+        label = "Armor Maximum Capacity/护甲最大容量",
+		hover = "The maximum durability of the armor".."\n护甲的耐久度上限",
+        options =
+        {
+			{description = "20%", 				data = 0.2,		hover = "20% of default value/默认值的20%"},
+			{description = "50%", 				data = 0.5,		hover = "50% of default value/默认值的50%"},
+			{description = "Default/默认", 		data = 1,		hover = "Default value/默认值"},
+			{description = "150%", 				data = 1.5,		hover = "150% of default value/默认值的150%"},
+			{description = "200%", 				data = 2,		hover = "200% of default value/默认值的200%"},
+			{description = "250%", 				data = 2.5,		hover = "250% of default value/默认值的250%"},
+			{description = "300%", 				data = 3,		hover = "300% of default value/默认值的300%"},
+            {description = "400%", 				data = 4,		hover = "400% of default value/默认值的400%"},
+            {description = "500%", 				data = 5,		hover = "500% of default value/默认值的500%"},
+			{description = "1000%", 			data = 10,		hover = "1000% of default value/默认值的1000%"},
+			{description = "Infinity/无限", 	data = 999,		hover = "Equipment won't lose durability/装备不会损失耐久度"},
+        },
+        default = 1,
+	},
+	{
+	name = "max_weapon",
+	label = "Weapon Maximum Capacity/武器最大容量",
+	hover = "The maximum durability of the weapon".."\n武器的耐久度上限",
+	options =
+	{
+		{description = "20%", 				data = 0.2,		hover = "20% of default value/默认值的20%"},
+		{description = "50%", 				data = 0.5,		hover = "50% of default value/默认值的50%"},
+		{description = "Default/默认", 		data = 1,		hover = "Default value/默认值"},
+		{description = "150%", 				data = 1.5,		hover = "150% of default value/默认值的150%"},
+		{description = "200%", 				data = 2,		hover = "200% of default value/默认值的200%"},
+		{description = "250%", 				data = 2.5,		hover = "250% of default value/默认值的250%"},
+		{description = "300%", 				data = 3,		hover = "300% of default value/默认值的300%"},
+		{description = "400%", 				data = 4,		hover = "400% of default value/默认值的400%"},
+		{description = "500%", 				data = 5,		hover = "500% of default value/默认值的500%"},
+		{description = "1000%", 			data = 10,		hover = "1000% of default value/默认值的1000%"},
+		{description = "Infinity/无限", 	data = 999,		hover = "Equipment won't lose durability/装备不会损失耐久度"},
+	},
+	default = 1,
+},
     {
         name = "break",
         label = "Equipment Retention/装备保留",
