@@ -1,5 +1,5 @@
 
-name = "Refillable Staffs and Amulets"
+name = "Refill"
 description = 
 [[
 - 2023-03-06：尝试加入骨盔、铥头、铥甲、铥棒、天气棒、晨星锤、斧镐、蝙蝠棒的耐久更改。
