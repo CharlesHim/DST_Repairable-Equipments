@@ -2,6 +2,7 @@
 name = "Refillable Staffs and Amulets"
 description = 
 [[
+- 原模组似乎于2023年3月15日变得不可见或已下架，因此重新上传一份，供好友使用。
 - Staffs and amulets can be refilled.
   法杖和护身符可以被充能。
 - Staffs and amulets can be more durable or destructible.
@@ -9,8 +10,8 @@ description =
 - Staffs and amulets can be retained with zero durability.
   法杖和护身符可以在耐久度耗尽时被保留。
 ]]
-author = "Rocket"
-version = "1.0.38"
+author = "瑶光"
+version = "2.0.1"
 
 forumthread = ""
 api_version = 10
@@ -45,10 +46,11 @@ configuration_options =
             {description = "5%", 					data = 0.05,	hover = "Increase by 5%/增加5%"},
             {description = "10%", 					data = 0.10,	hover = "Increase by 10%/增加10%"},
             {description = "20%", 					data = 0.20,	hover = "Increase by 20%/增加20%"},
+	        {description = "34%", 					data = 0.34,	hover = "Increase by 34%/增加34%"},
             {description = "50%", 					data = 0.50,	hover = "Increase by 50%/增加50%"},
             {description = "100%", 					data = 1.00,	hover = "Increase by 100%/增加100%"},
         },
-        default = 0.20,
+        default = 1.00,
 	},
 	{
 		name = "rate_reduction",
@@ -64,7 +66,7 @@ configuration_options =
             {description = "95%", 					data = 0.05,	hover = "Reduce the refill rate of rare equipment by 95%/稀有装备获得的充能值减少95%"},
 			{description = "No Refill/不充能", 		data = 0,		hover = "Rare equipment can not be refilled/稀有装备不可被充能"},
         },
-        default = 0.25,
+        default = 1,
 	},
     {
         name = "yellow_rate",
@@ -75,7 +77,7 @@ configuration_options =
             {description = "Yes/是", 		data = true, 	hover = "Use the original refill rate (37.5%)/使用系统默认的充能值（37.5%）"},
             {description = "No/否", 		data = false, 	hover = "Do not use the original refill rate/不使用系统默认的充能值"},
         },
-        default = true,
+        default = false,
     },
     {
         name = "usage",
@@ -86,7 +88,7 @@ configuration_options =
             {description = "Yes/是", 	data = false, 	hover = "Unusable/不可被使用"},
 			{description = "No/否", 	data = true, 	hover = "Can be used/可以被使用"},
         },
-        default = false,
+        default = true,
     },
 	{
 		name = "maximum",
@@ -97,12 +99,16 @@ configuration_options =
 			{description = "20%", 				data = 0.2,		hover = "20% of default value/默认值的20%"},
 			{description = "50%", 				data = 0.5,		hover = "50% of default value/默认值的50%"},
 			{description = "Default/默认", 		data = 1,		hover = "Default value/默认值"},
-            {description = "200%", 				data = 2,		hover = "200% of default value/默认值的200%"},
+			{description = "150%", 				data = 1.5,		hover = "150% of default value/默认值的150%"},
+			{description = "200%", 				data = 2,		hover = "200% of default value/默认值的200%"},
+			{description = "250%", 				data = 2.5,		hover = "250% of default value/默认值的250%"},
+			{description = "300%", 				data = 3,		hover = "300% of default value/默认值的300%"},
+            {description = "400%", 				data = 4,		hover = "400% of default value/默认值的400%"},
             {description = "500%", 				data = 5,		hover = "500% of default value/默认值的500%"},
 			{description = "1000%", 			data = 10,		hover = "1000% of default value/默认值的1000%"},
 			{description = "Infinity/无限", 	data = 999,		hover = "Equipment won't lose durability/装备不会损失耐久度"},
         },
-        default = 1,
+        default = 2.5,
 	},
     {
         name = "break",
