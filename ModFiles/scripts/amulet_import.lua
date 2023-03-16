@@ -14,6 +14,10 @@ local maximum_use = GetModConfigData("maximum") or 1
 local wont_break = GetModConfigData("break")
 local work_on_green = GetModConfigData("green")
 
+-- 瑶光：获取新增的配置参数
+local max_armor = GetModConfigData("max_armor")
+local max_weapon = GetModConfigData("max_weapon")
+
 
 	--Only Remove the Function/只有功能被移除
 	
@@ -30,11 +34,13 @@ local function amulet_break(inst)
 		if not owner:HasTag("busy") then
 			owner:PushEvent("toolbroke", {tool = inst})
 		end
-		if inst.prefab == "purpleamulet" then
+		
+		if inst.prefab == "purpleamulet" then	--梦魇护符
 			if owner.components.sanity ~= nil then
 				owner.components.sanity:SetInducedInsanity(inst, false)
 			end
-		elseif inst.prefab == "yellowamulet" then
+			
+		elseif inst.prefab == "yellowamulet" then	--魔光护符
 			if owner.components.bloomer ~= nil then
 				owner.components.bloomer:PopBloom(inst)
 			else
@@ -47,24 +53,27 @@ local function amulet_break(inst)
 				inst._light = nil
 			end
 			inst.components.equippable.walkspeedmult = 1
-		elseif inst.prefab == "greenamulet" then
+			
+		elseif inst.prefab == "greenamulet" then	--建造护符
 			if owner.components.builder ~= nil then
 				owner.components.builder.ingredientmod = 1
 			end
 			inst:RemoveEventCallback("consumeingredients", inst.onitembuild, owner)
 		end
 	end
-	if inst.prefab == "amulet" then
+	if inst.prefab == "amulet" then	--重生护符
 	    if inst.task ~= nil then
 			inst.task:Cancel()
 			inst.task = nil
 		end
-    elseif inst.prefab == "blueamulet" then
+		
+    elseif inst.prefab == "blueamulet" then	--寒冰护符
 		inst:RemoveEventCallback("attacked", inst.freezefn, owner)
 		if inst.components.heater ~= nil then
 			inst:RemoveComponent("heater")
 		end
-	elseif inst.prefab == "orangeamulet" then
+		
+	elseif inst.prefab == "orangeamulet" then	--懒人护符
 		if inst.task ~= nil then
 			inst.task:Cancel()
 			inst.task = nil

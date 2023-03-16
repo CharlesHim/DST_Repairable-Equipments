@@ -13,6 +13,10 @@ local maximum_use = GetModConfigData("maximum") or 1
 local wont_break = GetModConfigData("break")
 local work_on_green = GetModConfigData("green")
 
+-- 瑶光：获取新增的配置参数
+local max_armor = GetModConfigData("max_armor")
+local max_weapon = GetModConfigData("max_weapon")
+
 
 	--Only Remove the Function/只有功能被移除
 	
@@ -21,9 +25,9 @@ local function staff_break(inst)
 	if owner ~= nil and inst.components.equippable ~= nil and inst.components.equippable:IsEquipped() then
 		if owner.components.talker ~= nil then
 			if is_english then
-				owner.components.talker:Say("Staff durability exhausted.")
+				owner.components.talker:Say("Durability exhausted.")
 			else
-				owner.components.talker:Say("法杖耐久度耗尽。")
+				owner.components.talker:Say("耐久度耗尽。")
 			end
 		end
 		if not owner:HasTag("busy") then
@@ -82,9 +86,9 @@ local function on_accept_staff(inst, giver, item)
 			if current_percent >= 1 then
 				if giver.components.talker ~= nil then
 					if is_english then
-						giver.components.talker:Say("Staff durability is full already.")
+						giver.components.talker:Say("Durability is full already.")
 					else
-						giver.components.talker:Say("法杖耐久度已满。")
+						giver.components.talker:Say("耐久度已满。")
 					end
 				end
 				inst:DoTaskInTime(0.1, function()
@@ -121,12 +125,12 @@ local function on_accept_staff(inst, giver, item)
 						if is_english then
 							if item.prefab == "nightmarefuel" then
 								if inst.prefab == "icestaff" or inst.prefab == "firestaff" or inst.prefab == "telestaff" then
-									giver.components.talker:Say("Staff durability restored: "..(refill_rate * 100).."%.")
+									giver.components.talker:Say("Durability restored: "..(refill_rate * 100).."%.")
 								else
 									if refill_rate_reduction < 1 then
-										giver.components.talker:Say("Staff durability restored: "..(refill_rate * refill_rate_reduction * 100).."%.")
+										giver.components.talker:Say("Durability restored: "..(refill_rate * refill_rate_reduction * 100).."%.")
 									else
-										giver.components.talker:Say("Staff durability restored: "..(refill_rate * 100).."%.")
+										giver.components.talker:Say("Durability restored: "..(refill_rate * 100).."%.")
 									end
 								end
 							else
@@ -135,12 +139,12 @@ local function on_accept_staff(inst, giver, item)
 						else
 							if item.prefab == "nightmarefuel" then
 								if inst.prefab == "icestaff" or inst.prefab == "firestaff" or inst.prefab == "telestaff" then
-									giver.components.talker:Say("法杖耐久度恢复："..(refill_rate * 100).."%。")
+									giver.components.talker:Say("耐久度恢复："..(refill_rate * 100).."%。")
 								else
 									if refill_rate_reduction < 1 then
-										giver.components.talker:Say("法杖耐久度恢复："..(refill_rate * refill_rate_reduction * 100).."%。")
+										giver.components.talker:Say("耐久度恢复："..(refill_rate * refill_rate_reduction * 100).."%。")
 									else
-										giver.components.talker:Say("法杖耐久度恢复："..(refill_rate * 100).."%。")
+										giver.components.talker:Say("耐久度恢复："..(refill_rate * 100).."%。")
 									end
 								end
 							else
@@ -213,13 +217,13 @@ local function on_accept_staff(inst, giver, item)
 						if giver.components.talker ~= nil then
 							if is_english then
 								if item.prefab == "nightmarefuel" then
-									giver.components.talker:Say("Staff fully repaired.")
+									giver.components.talker:Say("Fully repaired.")
 								else
 									giver.components.talker:Say("The power of gem!")
 								end
 							else
 								if item.prefab == "nightmarefuel" then
-									giver.components.talker:Say("法杖完全修复。")
+									giver.components.talker:Say("完全修复。")
 								else
 									giver.components.talker:Say("宝石之力！")
 								end
@@ -231,12 +235,12 @@ local function on_accept_staff(inst, giver, item)
 							if is_english then
 								if item.prefab == "nightmarefuel" then
 									if inst.prefab == "icestaff" or inst.prefab == "firestaff" or inst.prefab == "telestaff" then
-										giver.components.talker:Say("Staff durability restored: "..(refill_rate * 100).."%.")
+										giver.components.talker:Say("Durability restored: "..(refill_rate * 100).."%.")
 									else
 										if refill_rate_reduction < 1 then
-											giver.components.talker:Say("Staff durability restored: "..(refill_rate * refill_rate_reduction * 100).."%.")
+											giver.components.talker:Say("Durability restored: "..(refill_rate * refill_rate_reduction * 100).."%.")
 										else
-											giver.components.talker:Say("Staff durability restored: "..(refill_rate * 100).."%.")
+											giver.components.talker:Say("Durability restored: "..(refill_rate * 100).."%.")
 										end
 									end
 								else
@@ -245,12 +249,12 @@ local function on_accept_staff(inst, giver, item)
 							else
 								if item.prefab == "nightmarefuel" then
 									if inst.prefab == "icestaff" or inst.prefab == "firestaff" or inst.prefab == "telestaff" then
-										giver.components.talker:Say("法杖耐久度恢复："..(refill_rate * 100).."%。")
+										giver.components.talker:Say("耐久度恢复："..(refill_rate * 100).."%。")
 									else
 										if refill_rate_reduction < 1 then
-											giver.components.talker:Say("法杖耐久度恢复："..(refill_rate * refill_rate_reduction * 100).."%。")
+											giver.components.talker:Say("耐久度恢复："..(refill_rate * refill_rate_reduction * 100).."%。")
 										else
-											giver.components.talker:Say("法杖耐久度恢复："..(refill_rate * 100).."%。")
+											giver.components.talker:Say("耐久度恢复："..(refill_rate * 100).."%。")
 										end
 									end
 								else

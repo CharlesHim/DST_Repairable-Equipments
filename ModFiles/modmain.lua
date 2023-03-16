@@ -11,7 +11,7 @@ local maximum_use = GetModConfigData("maximum") or 1
 local wont_break = GetModConfigData("break")
 local work_on_green = GetModConfigData("green")
 
--- 瑶光加的
+-- 瑶光：获取新增的配置参数
 local max_armor = GetModConfigData("max_armor")
 local max_weapon = GetModConfigData("max_weapon")
 
@@ -46,7 +46,7 @@ end
 
 
 
-	-- 瑶光加的护甲武器容量
+	-- 瑶光：护甲武器容量
 	
 if max_armor < 999 then
 	TUNING.ARMOR_SKELETONHAT = TUNING.ARMOR_SKELETONHAT * max_armor
@@ -54,10 +54,10 @@ if max_armor < 999 then
 	TUNING.ARMOR_ARMORRUINS = TUNING.ARMOR_ARMORRUINS * max_armor
 end
 if max_weapon < 999 then
-	GLOBAL.RUINS_BAT_USES = GLOBAL.RUINS_BAT_USES * max_weapon
-	GLOBAL.BATBAT_USES = GLOBAL.BATBAT_USES * max_weapon
-	--GLOBAL.NIGHTSTICK_FUEL = GLOBAL.NIGHTSTICK_FUEL * max_weapon
-	GLOBAL.NIGHTSTICK_FUEL = 30 * 16 * max_weapon	--瑶光：改为total day time乘以倍率，要不然还是太小
+	TUNING.RUINS_BAT_USES = TUNING.RUINS_BAT_USES * max_weapon
+	TUNING.BATBAT_USES = TUNING.BATBAT_USES * max_weapon
+	--TUNING.NIGHTSTICK_FUEL = TUNING.NIGHTSTICK_FUEL * max_weapon
+	TUNING.NIGHTSTICK_FUEL = 30 * 16 * max_weapon	--瑶光：晨星锤的耐久改为total day time乘以倍率，要不然还是太小
 end
 
 
