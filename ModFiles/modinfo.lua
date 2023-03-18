@@ -108,7 +108,7 @@ configuration_options =
         },
         default = 2.5,
 	},
-	-- 瑶光@23-03-16：护甲武器耐久的选项
+	-- @CharlesHim 护甲武器耐久的选项
 	{
 		name = "max_armor",
         label = "Armor Maximum Capacity/护甲最大容量",

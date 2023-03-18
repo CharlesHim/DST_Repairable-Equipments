@@ -14,7 +14,7 @@ local maximum_use = GetModConfigData("maximum") or 1
 local wont_break = GetModConfigData("break")
 local work_on_green = GetModConfigData("green")
 
--- 瑶光：获取新增的配置参数
+-- @CharlesHim 获取新增的配置参数
 local max_armor = GetModConfigData("max_armor")
 local max_weapon = GetModConfigData("max_weapon")
 
