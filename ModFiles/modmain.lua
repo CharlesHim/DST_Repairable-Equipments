@@ -121,7 +121,7 @@ if wont_break then	-- wont_break是空耐久不损毁的选项
 				end
 				self.inst:PushEvent("percentusedchange", {percent = self:GetPercent()})	-- 发送事件通知使用百分比发生变化
 			else
-				return FiniteUses:oldSetUsesFn_durability_fix(val)	-- 否则，调用原来的 SetUses 函数即可
+				return FiniteUses:oldSetUsesFn_durability_fix(val)	-- 否则，调用原来的 SetUses 函数
 			end
 		end
 	end)
@@ -129,15 +129,16 @@ if wont_break then	-- wont_break是空耐久不损毁的选项
 	--[[给 “hauntable” 组件添加一个后初始化函数。这个函数会在组件被创建后执行。
 	它首先保存了原来的 DoHaunt 函数，然后重写了 DoHaunt 函数。
 	新的 DoHaunt 函数会检查实例是否有 “durability_exhausted” 标签:
-	如果有，设置 self.haunted 为 true，并执行相应操作；
+	如果有，设置 self.haunted 为 true，并执行相应操作：
+	包括设置 self.haunted 为 true、设置作祟冷却时间、启动特效和着色器特效，并开始更新组件；
 	否则，调用原来的 DoHaunt 函数。]]
 	AddComponentPostInit("hauntable", function(Hauntable, inst)
 		Hauntable.oldDoHauntFn_no_durability = Hauntable.DoHaunt
 		function Hauntable:DoHaunt(doer)
-			if self.inst:HasTag("durability_exhausted") then
-				self.haunted = true
-				self.cooldowntimer = self.cooldown or TUNING.HAUNT_COOLDOWN_SMALL
-				self:StartFX(true)
+			if self.inst:HasTag("durability_exhausted") then		-- 如果已经耗尽耐久
+				self.haunted = true									-- 直接设置为已被作祟（跳过“触发法杖效果”这一阶段）
+				self.cooldowntimer = self.cooldown or TUNING.HAUNT_COOLDOWN_SMALL	-- 设置 CD
+				self:StartFX(true)									-- 特效
 				self:StartShaderFx()
 				self.inst:StartUpdatingComponent(self)
 				return

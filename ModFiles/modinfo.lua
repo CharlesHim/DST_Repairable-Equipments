@@ -8,31 +8,31 @@ description =
 - 原模组似乎于2023年3月15日变得不可见或已下架，因此重新上传一份，供好友使用。
 - 原模组介绍：法杖和护身符可以被充能、变得更加耐用或易坏、可以在耐久度耗尽时被保留。
 ]]
-author = "瑶光"
-version = "2.1.2"
+author = "瑶光"     -- 作者
+version = "2.1.2"   -- 版本号，每次更新必须改
 
-forumthread = ""
-api_version = 10
+forumthread = ""    -- 科雷论坛的thread网址
+api_version = 10    -- api兼容性检查用的，当前为10，不写10会报“mod过期”
 
-dst_compatible = true
-client_only_mod = false
-all_clients_require_mod = true
+dst_compatible = true   -- 与联机版兼容
+client_only_mod = false -- 不是客户端模组
+all_clients_require_mod = true  -- 所有客户端都需要该模组
 
-icon_atlas = "modicon.xml"
+icon_atlas = "modicon.xml"  -- 图标
 icon = "modicon.tex"
 
-configuration_options =
+configuration_options =     -- 配置选项
 {
     {
-        name = "lang",
-        label = "Language/语言",
-		hover = "The language you prefer for character speech".."\n你希望角色使用的语言",
-        options =
-        {
+        name = "lang",      -- 选项名称
+        label = "Language/语言",        -- 选项标签
+		hover = "The language you prefer for character speech".."\n你希望角色使用的语言",   -- 鼠标指针指向时提示
+        options =   --选项列表
+        {   -- 描述 - 数据 - 鼠标提升
             {description = "English", 	data = true, 	hover = "The character will declare the refill in English"},
             {description = "中文", 		data = false, 	hover = "角色将使用中文对充能进行宣告"},
         },
-        default = true,
+        default = true, --默认值
     },
 	{
 		name = "rate",
