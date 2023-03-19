@@ -19,71 +19,81 @@ local max_armor = GetModConfigData("max_armor")
 local max_weapon = GetModConfigData("max_weapon")
 
 
+
 	--Only Remove the Function/只有功能被移除
 	
-local function amulet_break(inst)
-	local owner = inst.components.inventoryitem.owner
+local function amulet_break(inst)	-- 当护符耐久耗尽损坏时
+	local owner = inst.components.inventoryitem.owner	--将owner（物品的主人）定义为该护符所在物品栏槽位的所有者
+	-- 如果有主人、该护符可以被穿戴、该护符正被穿戴
 	if owner ~= nil and inst.components.equippable ~= nil and inst.components.equippable:IsEquipped() then
-		if owner.components.talker ~= nil then
+		if owner.components.talker ~= nil then -- 如果主人可以说话（也许是用来排除韦斯这个角色？）
+			-- 根据语言环境说不同的提示语
 			if is_english then
 				owner.components.talker:Say("Amulet durability exhausted.")
 			else
 				owner.components.talker:Say("护身符耐久度耗尽。")
 			end
 		end
-		if not owner:HasTag("busy") then
-			owner:PushEvent("toolbroke", {tool = inst})
+		if not owner:HasTag("busy") then	-- 如果主人不繁忙
+			owner:PushEvent("toolbroke", {tool = inst}) -- 触发“工具损坏”的event（也许是人物用爆一件装备时的那一下抽搐？）
 		end
 		
-		if inst.prefab == "purpleamulet" then	--梦魇护符
+		if inst.prefab == "purpleamulet" then	--是梦魇护符：如果爆装备之后还锁着空san，就解锁空san
 			if owner.components.sanity ~= nil then
 				owner.components.sanity:SetInducedInsanity(inst, false)
 			end
 			
-		elseif inst.prefab == "yellowamulet" then	--魔光护符
-			if owner.components.bloomer ~= nil then
-				owner.components.bloomer:PopBloom(inst)
+		elseif inst.prefab == "yellowamulet" then	--是魔光护符：
+			if owner.components.bloomer ~= nil then	-- 如果主人自身有泛光效果
+				owner.components.bloomer:PopBloom(inst)	-- 继续泛光
 			else
-				owner.AnimState:ClearBloomEffectHandle()
+				owner.AnimState:ClearBloomEffectHandle()	--否则清除魔光护符的泛光效果
 			end
-			if inst._light ~= nil then
-				if inst._light:IsValid() then
-					inst._light:Remove()
+			if inst._light ~= nil then	-- 如果魔光护符在发光
+				if inst._light:IsValid() then	--且光有效（？）
+					inst._light:Remove()		-- 移除光
 				end
-				inst._light = nil
+				inst._light = nil	-- 并不再发光
 			end
-			inst.components.equippable.walkspeedmult = 1
+			inst.components.equippable.walkspeedmult = 1	-- 设置魔光护符的移速因数为1x以移除加速
 			
-		elseif inst.prefab == "greenamulet" then	--建造护符
+		elseif inst.prefab == "greenamulet" then	--是建造护符：如果可行，则将材料消耗倍率改回1x
 			if owner.components.builder ~= nil then
 				owner.components.builder.ingredientmod = 1
 			end
+			--[[@NewBing：下面这行代码调用了 inst 对象的 RemoveEventCallback 方法，用于移除一个事件回调。
+				它传入了三个参数：事件名称 "consumeingredients"，回调函数 inst.onitembuild 和对象 owner。
+				这意味着当 owner 对象触发 "consumeingredients" 事件时，不再调用 inst.onitembuild 函数作为回调。
+				具体来说，这行代码的目的是移除一个事件回调，以防止在特定条件下触发某些操作。]]
+			--消耗合成材料时不再触发“主人”的“在建造物品时”函数 
 			inst:RemoveEventCallback("consumeingredients", inst.onitembuild, owner)
 		end
 	end
-	if inst.prefab == "amulet" then	--重生护符
+	if inst.prefab == "amulet" then	--是重生护符：如果可行，取消正在进行的任务（回血）并删除任务
 	    if inst.task ~= nil then
 			inst.task:Cancel()
 			inst.task = nil
 		end
 		
-    elseif inst.prefab == "blueamulet" then	--寒冰护符
+    elseif inst.prefab == "blueamulet" then	--是寒冰护符：被攻击时不再触发冰冻反击；如果有，移除护符的“加热器”（制冷）组件
 		inst:RemoveEventCallback("attacked", inst.freezefn, owner)
 		if inst.components.heater ~= nil then
 			inst:RemoveComponent("heater")
 		end
 		
-	elseif inst.prefab == "orangeamulet" then	--懒人护符
+	elseif inst.prefab == "orangeamulet" then	--是懒人护符：如果可行，取消正在进行的任务（捡东西）并删除任务
 		if inst.task ~= nil then
 			inst.task:Cancel()
 			inst.task = nil
 		end	
 	end
-	inst:AddTag("durability_exhausted")
-	if inst.components.equippable ~= nil then
-		inst.components.equippable.dapperness = 0
+	inst:AddTag("durability_exhausted")		-- 加上耐久耗尽的标签
+	if inst.components.equippable ~= nil then	-- 如果可穿戴
+		inst.components.equippable.dapperness = 0	-- 取消回san效果
 	end
 end
+
+
 
 	--Refill/充能
 
@@ -319,6 +329,8 @@ local function on_accept_amulet(inst, giver, item)
 	end
 end
 
+
+
 	--Load Check/载入检查
 
 local function fuel_function_remove(inst)
@@ -344,6 +356,8 @@ local function fuel_remove(inst)
 		end
 	end
 end
+
+
 
 	--Onequip Check/佩戴检查
 
@@ -421,6 +435,8 @@ local function amulet_onunequip(inst, owner)
     end
 end
 
+
+
 	--Add or Lose Function/添加或移除功能
 	
 local function lose_function_amulet(inst)
@@ -468,6 +484,8 @@ local function lose_function_amulet(inst)
 		end
 	end
 end
+
+
 
 	--Modify prefab file/修改预制件
 	
