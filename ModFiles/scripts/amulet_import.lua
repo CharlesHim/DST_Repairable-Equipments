@@ -5,7 +5,7 @@ local SpawnPrefab = GLOBAL.SpawnPrefab
 local Vector3 = GLOBAL.Vector3
 local DEGREES = GLOBAL.DEGREES
 
-local is_english = GetModConfigData("lang")
+
 local refill_rate = GetModConfigData("rate") or 0.20
 local refill_rate_reduction = GetModConfigData("rate_reduction") or 1
 local yellow_default = GetModConfigData("yellow_rate")
