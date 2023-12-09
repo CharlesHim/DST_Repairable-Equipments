@@ -1,8 +1,12 @@
 --写给想修改这个mod的小可爱的修改指南
 --@瑶光 @2023.12.09
 --改耐久：约第20行
---添加填充物：约第60行
+--添加填充物：约第60行、250行
 --添加被填充的道具：约第80行
+
+
+--todo：
+--把12.9新添加的道具耐久项目写进填耐久里面
 
 local TUNING = GLOBAL.TUNING
 local ACTIONS = GLOBAL.ACTIONS
@@ -43,6 +47,14 @@ end
 TUNING.ARMOR_SKELETONHAT 			= TUNING.ARMOR_SKELETONHAT 			* max_armor		--骨头
 TUNING.ARMOR_RUINSHAT 				= TUNING.ARMOR_RUINSHAT 			* max_armor		--铥人头
 TUNING.ARMORRUINS 					= TUNING.ARMORRUINS 				* max_armor		--铥人甲
+TUNING.ARMOR_DREADSTONEHAT			= TUNING.ARMOR_DREADSTONEHAT		* max_armor		--绝望头
+TUNING.ARMORDREADSTONE				= TUNING.ARMORDREADSTONE			* max_armor		--绝望甲
+TUNING.ARMOR_LUNARPLANT_HAT			= TUNING.ARMOR_LUNARPLANT_HAT		* max_armor		--亮茄头
+TUNING.ARMOR_LUNARPLANT				= TUNING.ARMOR_LUNARPLANT			* max_armor		--亮茄甲
+TUNING.ARMOR_VOIDCLOTH_HAT			= TUNING.ARMOR_VOIDCLOTH_HAT		* max_armor		--虚空头
+TUNING.ARMOR_VOIDCLOTH				= TUNING.ARMOR_VOIDCLOTH			* max_armor		--虚空甲
+TUNING.ARMOR_WAGPUNK_HAT			= TUNING.ARMOR_WAGPUNK_HAT			* max_armor		--瓦格头
+TUNING.ARMORPUNK					= TUNING.ARMORPUNK					* max_armor		--瓦格甲
 
 --武器耐久  --在此处添加项目
 
@@ -51,6 +63,11 @@ TUNING.BATBAT_USES 					= TUNING.BATBAT_USES 				* max_weapon	--蝙蝠棒
 --TUNING.NIGHTSTICK_FUEL 			= TUNING.NIGHTSTICK_FUEL 			* max_weapon
 --晨星锤的耐久改为total day time乘以倍率，要不然还是太小
 TUNING.NIGHTSTICK_FUEL 				= 30 * 16 							* max_weapon	--晨星锤
+TUNING.NIGHTSWORD_USES				= TUNING.NIGHTSWORD_USES			* max_weapon	--影刀
+--TUNING.GLASSCUTTER.USES			= TUNING.GLASSCUTTER.USES			* max_weapon	--玻璃刀，这么写似乎有问题
+TUNING.STAFF_LUNARPLANT_USES		= TUNING.STAFF_LUNARPLANT_USES		* max_weapon	--亮茄杖
+TUNING.SWORD_LUNARPLANT_USES		= TUNING.SWORD_LUNARPLANT_USES		* max_weapon	--亮茄剑
+TUNING.VOIDCLOTH_SCYTHE_USES		= TUNING.VOIDCLOTH_SCYTHE_USES		* max_weapon	--暗影镰刀
 
 
 
@@ -234,8 +251,11 @@ end
 
 
 
+
+
 -----------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------
+--在此处添加项目
 
 --噩梦燃料可交易
 
