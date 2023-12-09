@@ -1,3 +1,9 @@
+--写给想修改这个mod的小可爱的修改指南
+--@瑶光 @2023.12.09
+--改耐久：约第20行
+--添加填充物：约第60行
+--添加被填充的道具：约第80行
+
 local TUNING = GLOBAL.TUNING
 local ACTIONS = GLOBAL.ACTIONS
 local SpawnPrefab = GLOBAL.SpawnPrefab
@@ -11,7 +17,7 @@ local max_weapon = GetModConfigData("max_weapon")
 
 
 
---道具耐久
+--道具耐久  --在此处添加项目
 
 TUNING.ICESTAFF_USES 				= TUNING.ICESTAFF_USES 				* maximum_use	--冰杖
 TUNING.FIRESTAFF_USES 				= TUNING.FIRESTAFF_USES 			* maximum_use	--火杖
@@ -29,16 +35,16 @@ TUNING.TORNADOSTAFF_USES 			= TUNING.TORNADOSTAFF_USES 			* maximum_use	--风杖
 
 if work_on_green then
 	TUNING.GREENSTAFF_USES 			= TUNING.GREENSTAFF_USES 			* maximum_use	--拆迁法杖
-	TUNING.GREENAMULET_USES 		= TUNING.GREENAMULET_USES 			* maximum_use	--偷工减料护符
+	TUNING.GREENAMULET_USES 		= TUNING.GREENAMULET_USES 			* maximum_use	--偷工减料许可证
 end	
 
---护甲耐久	
+--护甲耐久	--在此处添加项目
 
 TUNING.ARMOR_SKELETONHAT 			= TUNING.ARMOR_SKELETONHAT 			* max_armor		--骨头
 TUNING.ARMOR_RUINSHAT 				= TUNING.ARMOR_RUINSHAT 			* max_armor		--铥人头
 TUNING.ARMORRUINS 					= TUNING.ARMORRUINS 				* max_armor		--铥人甲
 
---武器耐久
+--武器耐久  --在此处添加项目
 
 TUNING.RUINS_BAT_USES 				= TUNING.RUINS_BAT_USES 			* max_weapon	--铥人棒
 TUNING.BATBAT_USES 					= TUNING.BATBAT_USES 				* max_weapon	--蝙蝠棒
@@ -51,11 +57,11 @@ TUNING.NIGHTSTICK_FUEL 				= 30 * 16 							* max_weapon	--晨星锤
 --充能
 	
 local function accept_test(inst, item)
-	return item ~= nil and (item.prefab == ("nightmarefuel" or "horrorfuel"))
+	return item ~= nil and (item.prefab == ("nightmarefuel" or "horrorfuel" or "purebrilliance"))	--改这里
 end
 
 local function on_accept(inst, giver, item)
-	if item ~= nil and (item.prefab == "nightmarefuel" or "horrorfuel") then
+	if item ~= nil and (item.prefab == "nightmarefuel" or "horrorfuel" or "purebrilliance") then
 		if inst.components.finiteuses ~= nil or inst.components.fueled ~= nil then
 			giver.SoundEmitter:PlaySound("dontstarve/common/nightmareAddFuel")
 			if inst.components.finiteuses ~= nil then
@@ -73,7 +79,8 @@ end
 
 -----------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------
-	
+--在此处添加项目
+
 --冰魔杖
 AddPrefabPostInit("icestaff", function(inst)
 	if GLOBAL.TheWorld.ismastersim then
@@ -212,7 +219,7 @@ AddPrefabPostInit("yellowamulet", function(inst)
 	end
 end)
 
---偷工减料护符
+--偷工减料许可证
 if work_on_green then
 	AddPrefabPostInit("greenamulet", function(inst)
 		if GLOBAL.TheWorld.ismastersim then
@@ -250,3 +257,12 @@ AddPrefabPostInit("horrorfuel", function(inst)
 	end
 end)
 
+--纯粹辉煌可交易
+
+AddPrefabPostInit("purebrilliance", function(inst)
+	if GLOBAL.TheWorld.ismastersim then
+		if inst.components.tradable == nil then
+			inst:AddComponent("tradable")
+		end
+	end
+end)
