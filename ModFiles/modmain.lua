@@ -130,7 +130,7 @@ end
 
 --绿宝石装备们
 if work_on_green then	
-	--拆迁杖ex
+	--拆迁杖
 	AddPrefabPostInit("greenstaff", function(inst)
 		if GLOBAL.TheWorld.ismastersim then
 			if inst.components.trader == nil then
@@ -140,7 +140,7 @@ if work_on_green then
 			end
 		end
 	end)
-	--偷工减料许可证ex
+	--偷工减料许可证
 	AddPrefabPostInit("greenamulet", function(inst)
 		if GLOBAL.TheWorld.ismastersim then
 			if inst.components.trader == nil then
@@ -152,7 +152,7 @@ if work_on_green then
 	end)
 end
 
---魔光护符ex
+--魔光护符，原版自带加燃料功能
 AddPrefabPostInit("yellowamulet", function(inst)
 	if GLOBAL.TheWorld.ismastersim then
 		if inst.components.fueled ~= nil then
@@ -172,32 +172,19 @@ end)
 -----------------------------------------------------------------------------------
 --在此处添加项目
 
---噩梦燃料可交易
+local trade_prefab_list = 
+{
+	"nightmarefuel",	--噩梦燃料
+	"horrorfuel"		--纯净恐惧
+	"purebrilliance"	--纯粹辉煌
+}
 
-AddPrefabPostInit("nightmarefuel", function(inst)
-	if GLOBAL.TheWorld.ismastersim then
-		if inst.components.tradable == nil then
-			inst:AddComponent("tradable")
+for _, trade_prefab in pairs(trade_prefab_list) do
+	AddPrefabPostInit(trade_prefab, function(inst)
+		if GLOBAL.TheWorld.ismastersim then
+			if inst.components.tradable == nil then
+				inst:AddComponent("tradable")
+			end
 		end
-	end
-end)
-
---纯净恐惧可交易
-
-AddPrefabPostInit("horrorfuel", function(inst)
-	if GLOBAL.TheWorld.ismastersim then
-		if inst.components.tradable == nil then
-			inst:AddComponent("tradable")
-		end
-	end
-end)
-
---纯粹辉煌可交易
-
-AddPrefabPostInit("purebrilliance", function(inst)
-	if GLOBAL.TheWorld.ismastersim then
-		if inst.components.tradable == nil then
-			inst:AddComponent("tradable")
-		end
-	end
-end)
+	end)
+end
