@@ -36,6 +36,7 @@ TUNING.YELLOWAMULET_FUEL 			= TUNING.YELLOWAMULET_FUEL 			* maximum_use	--魔光
 TUNING.ORANGEAMULET_USES 			= TUNING.ORANGEAMULET_USES 			* maximum_use	--懒人~
 TUNING.MULTITOOL_AXE_PICKAXE_USES 	= TUNING.MULTITOOL_AXE_PICKAXE_USES	* maximum_use	--斧镐
 TUNING.TORNADOSTAFF_USES 			= TUNING.TORNADOSTAFF_USES 			* maximum_use	--风杖
+TUNING.VOIDCLOTH_UMBRELLA_PERISHTIME= 30 * 16 *15						* maximum_use	--虚空伞
 
 if work_on_green then
 	TUNING.GREENSTAFF_USES 			= TUNING.GREENSTAFF_USES 			* maximum_use	--拆迁法杖
@@ -164,7 +165,7 @@ AddPrefabPostInit("opalstaff", function(inst)
 	end
 end)
 
---拆迁杖
+--拆迁杖ex
 if work_on_green then
 	AddPrefabPostInit("greenstaff", function(inst)
 		if GLOBAL.TheWorld.ismastersim then
@@ -222,7 +223,7 @@ AddPrefabPostInit("orangeamulet", function(inst)
 	end
 end)
 
---魔光护符
+--魔光护符ex
 AddPrefabPostInit("yellowamulet", function(inst)
 	if GLOBAL.TheWorld.ismastersim then
 		if inst.components.fueled ~= nil then
@@ -236,7 +237,7 @@ AddPrefabPostInit("yellowamulet", function(inst)
 	end
 end)
 
---偷工减料许可证
+--偷工减料许可证ex
 if work_on_green then
 	AddPrefabPostInit("greenamulet", function(inst)
 		if GLOBAL.TheWorld.ismastersim then
