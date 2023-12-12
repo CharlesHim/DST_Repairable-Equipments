@@ -11,11 +11,11 @@ description =
 - 懒得挨个写了，自己试吧，有啥建议可以评论区留言
 - 设置里可以修改是否允许填充绿宝石装备的耐久 
 - 可以修改特定道具、护甲、武器的最大耐久 
-- 版本号：v3.0.0
+- 版本号：v3.0.1
 - 最近更新：2023.12.12
 ]]
 author = "瑶光"                     --作者
-version = "3.0.0"                   --版本号，每次更新必须改
+version = "3.0.1"                   --版本号，每次更新必须改
 
 forumthread = ""                    --科雷论坛的thread网址
 api_version = 10                    --api兼容性检查用的，当前为10，不写10会报“mod过期”
@@ -32,7 +32,7 @@ configuration_options =             --配置选项
 	{
 		name = "maximum",
         label = "道具耐久倍率",
-		hover = "不建议开大了",
+		hover = "不建议改得太离谱",
         options =
         {
 			{description = "20%", 				data = 0.2,		hover = "默认值的20%"},
@@ -51,7 +51,7 @@ configuration_options =             --配置选项
 	{
 		name = "max_armor",
         label = "护甲耐久倍率",
-		hover = "不建议开启",
+		hover = "不建议修改得太离谱",
         options =
         {
 			{description = "20%", 				data = 0.2,		hover = "默认值的20%"},
@@ -69,8 +69,8 @@ configuration_options =             --配置选项
 	},
 	{
 	name = "max_weapon",
-	label = "不建议开启",
-	hover = "...",
+	label = "武器耐久倍率",
+	hover = "不建议修改得太离谱",
 	options =
 	{
 		{description = "20%", 				data = 0.2,		hover = "默认值的20%"},
@@ -89,7 +89,7 @@ configuration_options =             --配置选项
     {
         name = "green",
         label = "绿宝石装备",
-		hover = "模组是否对绿宝石装备生效，不建议开启",
+		hover = "模组是否对绿宝石装备生效，不建议开启，影响平衡",
         options =
         {
             {description = "否", 	data = false, 	hover = "模组对绿宝石装备不生效"},
