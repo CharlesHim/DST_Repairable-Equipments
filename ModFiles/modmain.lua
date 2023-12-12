@@ -36,8 +36,12 @@ TUNING.YELLOWAMULET_FUEL 			= TUNING.YELLOWAMULET_FUEL 			* maximum_use	--魔光
 TUNING.ORANGEAMULET_USES 			= TUNING.ORANGEAMULET_USES 			* maximum_use	--懒人~
 TUNING.MULTITOOL_AXE_PICKAXE_USES 	= TUNING.MULTITOOL_AXE_PICKAXE_USES	* maximum_use	--斧镐
 TUNING.TORNADOSTAFF_USES 			= TUNING.TORNADOSTAFF_USES 			* maximum_use	--风杖
-TUNING.VOIDCLOTH_UMBRELLA_PERISHTIME= 30 * 16 *15						* maximum_use	--虚空伞
 
+--特殊：按时间计算的
+TUNING.VOIDCLOTH_UMBRELLA_PERISHTIME= 30 * 16 *15						* maximum_use	--虚空伞
+TUNING.THURIBLE_FUEL_MAX			= 30 * 16							* maximum_use	--香炉
+
+--特殊：绿宝石装备
 if work_on_green then
 	TUNING.GREENSTAFF_USES 			= TUNING.GREENSTAFF_USES 			* maximum_use	--拆迁法杖
 	TUNING.GREENAMULET_USES 		= TUNING.GREENAMULET_USES 			* maximum_use	--偷工减料许可证
@@ -45,6 +49,7 @@ end
 
 --护甲耐久	--在此处添加项目
 
+TUNING.ARMOR_SANITY					= TUNING.ARMOR_SANITY				* max_armor		--影甲
 TUNING.ARMOR_SKELETONHAT 			= TUNING.ARMOR_SKELETONHAT 			* max_armor		--骨头
 TUNING.ARMOR_RUINSHAT 				= TUNING.ARMOR_RUINSHAT 			* max_armor		--铥人头
 TUNING.ARMORRUINS 					= TUNING.ARMORRUINS 				* max_armor		--铥人甲
@@ -61,14 +66,18 @@ TUNING.ARMORPUNK					= TUNING.ARMORPUNK					* max_armor		--瓦格甲
 
 TUNING.RUINS_BAT_USES 				= TUNING.RUINS_BAT_USES 			* max_weapon	--铥人棒
 TUNING.BATBAT_USES 					= TUNING.BATBAT_USES 				* max_weapon	--蝙蝠棒
---TUNING.NIGHTSTICK_FUEL 			= TUNING.NIGHTSTICK_FUEL 			* max_weapon
---晨星锤的耐久改为total day time乘以倍率，要不然还是太小
-TUNING.NIGHTSTICK_FUEL 				= 30 * 16 							* max_weapon	--晨星锤
 TUNING.NIGHTSWORD_USES				= TUNING.NIGHTSWORD_USES			* max_weapon	--影刀
---TUNING.GLASSCUTTER.USES			= TUNING.GLASSCUTTER.USES			* max_weapon	--玻璃刀，这么写似乎有问题
 TUNING.STAFF_LUNARPLANT_USES		= TUNING.STAFF_LUNARPLANT_USES		* max_weapon	--亮茄杖
 TUNING.SWORD_LUNARPLANT_USES		= TUNING.SWORD_LUNARPLANT_USES		* max_weapon	--亮茄剑
 TUNING.VOIDCLOTH_SCYTHE_USES		= TUNING.VOIDCLOTH_SCYTHE_USES		* max_weapon	--暗影镰刀
+
+--特殊情况
+
+--晨星锤的耐久改为total day time乘以倍率，要不然还是太小
+TUNING.NIGHTSTICK_FUEL 				= 30 * 16 							* max_weapon	--晨星锤
+
+--玻璃刀修改后写似乎有问题，先删掉
+--TUNING.GLASSCUTTER.USES			= TUNING.GLASSCUTTER.USES			* max_weapon	--玻璃刀
 
 
 
@@ -97,21 +106,33 @@ end
 
 -----------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------
---在此处添加一般项目
 
+--在此处添加允许接受燃料的东西
 local refill_prefab_list = 
 {
-	"icestaff",		--冰魔杖
-	"firestaff",	--火魔杖
-	"telestaff",	--传送杖
-	"orangestaff",	--懒人杖
-	"yellowstaff",	--星杖
-	"opalstaff",	--月杖
-	"amulet",		--重生护符
-	"blueamulet",	--寒冰护符
-	"purpleamulet",	--梦魇护符
-	"orangeamulet"	--懒人护符
-
+	"icestaff",			--冰魔杖
+	"firestaff",		--火魔杖
+	"telestaff",		--传送杖
+	"orangestaff",		--懒人杖
+	"yellowstaff",		--星杖
+	"opalstaff",		--月杖
+	"amulet",			--重生护符
+	"blueamulet",		--寒冰护符
+	"purpleamulet",		--梦魇护符
+	"orangeamulet",		--懒人护符
+	"multitool_axe_pickaxe",	--多用斧镐
+	"staff_tornado",			--风杖
+	"voidcloth_umbrella",		--暗影伞
+	"skeletonhat",				--骨头
+	"ruinshat", "armorruins", "ruins_bat",		--铥人三件套
+	"dreadstonehat", "armordreadstone",			--绝望护甲
+	"lunarplanthat", "armor_lunarplant", "sword_lunarplant", "staff_lunarplant",	--亮茄四件套
+	"voidclothhat", "armor_voidcloth", "voidcloth_scythe",							--虚空三件套
+	"wagpunkhat", "armorwagpunk",	--瓦格朋克套
+	"batbat",		--蝙蝠棒
+	"glasscutter",	--玻璃刀
+	"nightstick",	--晨星锤
+	"nightsword", "armor_sanity",	--影刀影甲
 }
 
 for _, refill_prefab in pairs(refill_prefab_list) do
@@ -170,8 +191,8 @@ end)
 
 -----------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------
---在此处添加项目
 
+--在此处添加用于填充的燃料
 local trade_prefab_list = 
 {
 	"nightmarefuel",	--噩梦燃料

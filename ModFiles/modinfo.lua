@@ -1,14 +1,14 @@
 --写给想维护这个mod的小可爱的维护指南
 --@瑶光 @2023.12.09
---上传前务必修改两处版本号、一处更新日期
---有空写写readme也挺不错哦
+--上传前务必修改两处版本号、一处更新日期、一处修改指南哦
+--有空写写指南也挺不错哦
 
 name = "Refill+"
 description = 
 [[
 - 本模组仍在接手开发中……
 - 版本号：v3.0.0
-- 最近更新：2023.12.09
+- 最近更新：2023.12.12
 ]]
 author = "瑶光"                     --作者
 version = "3.0.0"                   --版本号，每次更新必须改
@@ -28,7 +28,7 @@ configuration_options =             --配置选项
 	{
 		name = "maximum",
         label = "道具耐久倍率",
-		hover = "。。。",
+		hover = "不建议开大了",
         options =
         {
 			{description = "20%", 				data = 0.2,		hover = "默认值的20%"},
@@ -42,12 +42,12 @@ configuration_options =             --配置选项
             {description = "500%", 				data = 5,		hover = "默认值的500%"},
 			{description = "1000%", 			data = 10,		hover = "默认值的1000%"},
         },
-        default = 2.5,
+        default = 2,
 	},
 	{
 		name = "max_armor",
         label = "护甲耐久倍率",
-		hover = "。。。",
+		hover = "不建议开启",
         options =
         {
 			{description = "20%", 				data = 0.2,		hover = "默认值的20%"},
@@ -65,7 +65,7 @@ configuration_options =             --配置选项
 	},
 	{
 	name = "max_weapon",
-	label = "武器耐久倍率",
+	label = "不建议开启",
 	hover = "。。。",
 	options =
 	{
@@ -85,7 +85,7 @@ configuration_options =             --配置选项
     {
         name = "green",
         label = "绿宝石装备",
-		hover = "模组是否对绿宝石装备生效",
+		hover = "模组是否对绿宝石装备生效，不建议开启",
         options =
         {
             {description = "否", 	data = false, 	hover = "模组对绿宝石装备不生效"},
