@@ -97,77 +97,25 @@ end
 
 -----------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------
---在此处添加项目
+--在此处添加一般项目
 
---冰魔杖
-AddPrefabPostInit("icestaff", function(inst)
-	if GLOBAL.TheWorld.ismastersim then
-		if inst.components.trader == nil then
-			inst:AddComponent("trader")
-			inst.components.trader:SetAbleToAcceptTest(accept_test)
-			inst.components.trader.onaccept = on_accept
-		end
-	end
-end)
+local refill_prefab_list = 
+{
+	"icestaff",		--冰魔杖
+	"firestaff",	--火魔杖
+	"telestaff",	--传送杖
+	"orangestaff",	--懒人杖
+	"yellowstaff",	--星杖
+	"opalstaff",	--月杖
+	"amulet",		--重生护符
+	"blueamulet",	--寒冰护符
+	"purpleamulet",	--梦魇护符
+	"orangeamulet"	--懒人护符
 
---火魔杖
-AddPrefabPostInit("firestaff", function(inst)
-	if GLOBAL.TheWorld.ismastersim then
-		if inst.components.trader == nil then
-			inst:AddComponent("trader")
-			inst.components.trader:SetAbleToAcceptTest(accept_test)
-			inst.components.trader.onaccept = on_accept
-		end
-	end
-end)
+}
 
---传送杖
-AddPrefabPostInit("telestaff", function(inst)
-	if GLOBAL.TheWorld.ismastersim then
-		if inst.components.trader == nil then
-			inst:AddComponent("trader")
-			inst.components.trader:SetAbleToAcceptTest(accept_test)
-			inst.components.trader.onaccept = on_accept
-		end
-	end
-end)
-
---懒人杖
-AddPrefabPostInit("orangestaff", function(inst)
-	if GLOBAL.TheWorld.ismastersim then
-		if inst.components.trader == nil then
-			inst:AddComponent("trader")
-			inst.components.trader:SetAbleToAcceptTest(accept_test)
-			inst.components.trader.onaccept = on_accept
-		end
-	end
-end)
-
---星杖
-AddPrefabPostInit("yellowstaff", function(inst)
-	if GLOBAL.TheWorld.ismastersim then
-		if inst.components.trader == nil then
-			inst:AddComponent("trader")
-			inst.components.trader:SetAbleToAcceptTest(accept_test)
-			inst.components.trader.onaccept = on_accept
-		end
-	end
-end)
-
---月杖
-AddPrefabPostInit("opalstaff", function(inst)
-	if GLOBAL.TheWorld.ismastersim then
-		if inst.components.trader == nil then
-			inst:AddComponent("trader")
-			inst.components.trader:SetAbleToAcceptTest(accept_test)
-			inst.components.trader.onaccept = on_accept
-		end
-	end
-end)
-
---拆迁杖ex
-if work_on_green then
-	AddPrefabPostInit("greenstaff", function(inst)
+for _, refill_prefab in pairs(refill_prefab_list) do
+	AddPrefabPostInit(refill_prefab, function(inst)
 		if GLOBAL.TheWorld.ismastersim then
 			if inst.components.trader == nil then
 				inst:AddComponent("trader")
@@ -178,50 +126,31 @@ if work_on_green then
 	end)
 end
 
+--以下为例外
 
---重生护符
-AddPrefabPostInit("amulet", function(inst)
-	if GLOBAL.TheWorld.ismastersim then
-		if inst.components.trader == nil then
-			inst:AddComponent("trader")
-			inst.components.trader:SetAbleToAcceptTest(accept_test)
-			inst.components.trader.onaccept = on_accept
+--绿宝石装备们
+if work_on_green then	
+	--拆迁杖ex
+	AddPrefabPostInit("greenstaff", function(inst)
+		if GLOBAL.TheWorld.ismastersim then
+			if inst.components.trader == nil then
+				inst:AddComponent("trader")
+				inst.components.trader:SetAbleToAcceptTest(accept_test)
+				inst.components.trader.onaccept = on_accept
+			end
 		end
-	end
-end)
-
---寒冰护符
-AddPrefabPostInit("blueamulet", function(inst)
-	if GLOBAL.TheWorld.ismastersim then
-		if inst.components.trader == nil then
-			inst:AddComponent("trader")
-			inst.components.trader:SetAbleToAcceptTest(accept_test)
-			inst.components.trader.onaccept = on_accept
+	end)
+	--偷工减料许可证ex
+	AddPrefabPostInit("greenamulet", function(inst)
+		if GLOBAL.TheWorld.ismastersim then
+			if inst.components.trader == nil then
+				inst:AddComponent("trader")
+				inst.components.trader:SetAbleToAcceptTest(accept_test)
+				inst.components.trader.onaccept = on_accept
+			end
 		end
-	end
-end)
-
---梦魇护符
-AddPrefabPostInit("purpleamulet", function(inst)
-	if GLOBAL.TheWorld.ismastersim then
-		if inst.components.trader == nil then
-			inst:AddComponent("trader")
-			inst.components.trader:SetAbleToAcceptTest(accept_test)
-			inst.components.trader.onaccept = on_accept
-		end
-	end
-end)
-
---懒人护符
-AddPrefabPostInit("orangeamulet", function(inst)
-	if GLOBAL.TheWorld.ismastersim then
-		if inst.components.trader == nil then
-			inst:AddComponent("trader")
-			inst.components.trader:SetAbleToAcceptTest(accept_test)
-			inst.components.trader.onaccept = on_accept
-		end
-	end
-end)
+	end)
+end
 
 --魔光护符ex
 AddPrefabPostInit("yellowamulet", function(inst)
@@ -236,21 +165,6 @@ AddPrefabPostInit("yellowamulet", function(inst)
 		end
 	end
 end)
-
---偷工减料许可证ex
-if work_on_green then
-	AddPrefabPostInit("greenamulet", function(inst)
-		if GLOBAL.TheWorld.ismastersim then
-			if inst.components.trader == nil then
-				inst:AddComponent("trader")
-				inst.components.trader:SetAbleToAcceptTest(accept_test)
-				inst.components.trader.onaccept = on_accept
-			end
-		end
-	end)
-end
-
-
 
 
 
