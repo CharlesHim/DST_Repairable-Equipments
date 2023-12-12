@@ -66,7 +66,7 @@ configuration_options =             --配置选项
 	{
 	name = "max_weapon",
 	label = "不建议开启",
-	hover = "。。。",
+	hover = "...",
 	options =
 	{
 		{description = "20%", 				data = 0.2,		hover = "默认值的20%"},

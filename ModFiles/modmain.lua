@@ -76,7 +76,7 @@ TUNING.VOIDCLOTH_SCYTHE_USES		= TUNING.VOIDCLOTH_SCYTHE_USES		* max_weapon	--暗
 --晨星锤的耐久改为total day time乘以倍率，要不然还是太小
 TUNING.NIGHTSTICK_FUEL 				= 30 * 16 							* max_weapon	--晨星锤
 
---玻璃刀修改后写似乎有问题，先删掉
+--玻璃刀修改后写似乎有问题，先删掉，后面有时间再看看吧
 --TUNING.GLASSCUTTER.USES			= TUNING.GLASSCUTTER.USES			* max_weapon	--玻璃刀
 
 
@@ -92,13 +92,38 @@ local function on_accept(inst, giver, item)
 		if inst.components.finiteuses ~= nil or inst.components.fueled ~= nil then
 			giver.SoundEmitter:PlaySound("dontstarve/common/nightmareAddFuel")
 			if inst.components.finiteuses ~= nil then
-				inst.components.finiteuses:SetPercent(1)
+				inst.components.finiteuses:SetPercent(0.99)		--充能比，建议不要设为1以防这种特殊情况：
+				--设定上当亮茄、虚空、瓦格朋克装备耐久归零时，如果不用对应的装备修复，就会导致无法装备；
+				--如果设为1，可能导致装备损坏时被错误的道具补满耐久，
+				--因而无法再次使用修复套装使其恢复功能，因此装备就变成了满耐久的垃圾。
+
 			elseif inst.components.fueled ~= nil then
-				inst.components.fueled:SetPercent(1)
+				inst.components.fueled:SetPercent(0.99)			--同上
 			end
 		end
 	end
 end
+				-------------------------------------------------------------------------
+				-------------------------------------------------------------------------
+				--	这本是测试阶段发现的一个bug，可以想到的修复方法有以下几种：
+				--	
+				--	1，使这些装备耐久为0时直接损毁，以统一修复的规则：失手用爆装备后果自负；	
+				--		（这样符合饥荒设定上的粗犷风格，但修复套装失去了存在的意义）
+				--
+				--	2，使这些装备耐久修复时自动移除“已经损毁”的状态；
+				--		（这样对玩家过于友好，而且修复套装同样失去了存在的意义）
+				--
+				--	3，使这些装备无法被本mod修复；
+				--		（这是只有王者荣耀程序员才会用的暴力bug修复手段）
+				--
+				--	所以我选择了第四种方案：使得充能只能充到99%。这样装备用爆后，既保留了方案1
+				--	对“失手用爆装备”的惩罚，又使得修复套装成为一个可行的弥补措施。
+				
+				--	99% ———— 你再也不能把你在永恒领域饱经摧残的心修补完整。有点小浪漫哦~
+				-------------------------------------------------------------------------
+				-------------------------------------------------------------------------
+
+
 
 
 
