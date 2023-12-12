@@ -196,8 +196,8 @@ end)
 local trade_prefab_list = 
 {
 	"nightmarefuel",	--噩梦燃料
-	"horrorfuel"		--纯净恐惧
-	"purebrilliance"	--纯粹辉煌
+	"horrorfuel",		--纯净恐惧
+	"purebrilliance",	--纯粹辉煌
 }
 
 for _, trade_prefab in pairs(trade_prefab_list) do
