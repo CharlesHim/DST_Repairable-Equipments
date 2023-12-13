@@ -1,12 +1,12 @@
 --写给想修改这个mod的小可爱的修改指南
 --@瑶光 @2023.12.09
---改耐久：约第20行
---添加填充物：约第60行、250行
---添加被填充的道具：约第80行
+--改耐久：约第30行
+--添加填充物：约第90行、230行
+--添加被填充的道具：约第150行
 
 
---todo：
---把12.9新添加的道具耐久项目写进填耐久里面
+
+
 
 local TUNING = GLOBAL.TUNING
 local ACTIONS = GLOBAL.ACTIONS
@@ -84,21 +84,32 @@ TUNING.NIGHTSTICK_FUEL 				= 30 * 16 							* max_weapon	--晨星锤
 --充能
 	
 local function accept_test(inst, item)
-	return item ~= nil and (item.prefab == ("nightmarefuel" or "horrorfuel" or "purebrilliance"))	--改这里
+	return item ~= nil and (
+		(item.prefab == "nightmarefuel") or 
+		(item.prefab == "horrorfuel") or 
+		(item.prefab == "purebrilliance")		--改这里
+	)
 end
 
 local function on_accept(inst, giver, item)
-	if item ~= nil and (item.prefab == "nightmarefuel" or "horrorfuel" or "purebrilliance") then
-		if inst.components.finiteuses ~= nil or inst.components.fueled ~= nil then
+	if item ~= nil and (
+		(item.prefab == "nightmarefuel") or 	--改这里
+		(item.prefab == "horrorfuel") or 
+		(item.prefab == "purebrilliance")
+		) then
+		if (inst.components.finiteuses ~= nil) or (inst.components.fueled ~= nil) or (inst.components.armor ~= nil) then
 			giver.SoundEmitter:PlaySound("dontstarve/common/nightmareAddFuel")
 			if inst.components.finiteuses ~= nil then
-				inst.components.finiteuses:SetPercent(0.99)		--充能比，建议不要设为1以防这种特殊情况：
+				inst.components.finiteuses:SetPercent(0.99)		--道具充能比，建议不要设为1以防这种特殊情况：
 				--设定上当亮茄、虚空、瓦格朋克装备耐久归零时，如果不用对应的装备修复，就会导致无法装备；
 				--如果设为1，可能导致装备损坏时被错误的道具补满耐久，
 				--因而无法再次使用修复套装使其恢复功能，因此装备就变成了满耐久的垃圾。
 
 			elseif inst.components.fueled ~= nil then
-				inst.components.fueled:SetPercent(0.99)			--同上
+				inst.components.fueled:SetPercent(0.99)			--燃料类充能比，同上
+			
+			elseif inst.components.armor ~= nil then
+				inst.components.armor:SetPercent(0.99)			--护甲类充能比，同上
 			end
 		end
 	end
