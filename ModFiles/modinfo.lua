@@ -32,12 +32,12 @@ configuration_options =             --配置选项
 	{
 		name = "maximum",
         label = "道具耐久倍率",
-		hover = "不建议改得太离谱",
+		hover = "Durability Multiplier for Items 不建议改得太离谱",
         options =
         {
 			{description = "20%", 				data = 0.2,		hover = "默认值的20%"},
 			{description = "50%", 				data = 0.5,		hover = "默认值的50%"},
-			{description = "默认", 		        data = 1,		hover = "默认值"},
+			{description = "默认/Default",		data = 1,		hover = "默认值"},
 			{description = "150%", 				data = 1.5,		hover = "默认值的150%"},
 			{description = "200%", 				data = 2,		hover = "默认值的200%"},
 			{description = "250%", 				data = 2.5,		hover = "默认值的250%"},
@@ -51,12 +51,12 @@ configuration_options =             --配置选项
 	{
 		name = "max_armor",
         label = "护甲耐久倍率",
-		hover = "不建议修改得太离谱",
+		hover = "Multiplier for Armors 不建议修改得太离谱",
         options =
         {
 			{description = "20%", 				data = 0.2,		hover = "默认值的20%"},
 			{description = "50%", 				data = 0.5,		hover = "默认值的50%"},
-			{description = "默认", 	        	data = 1,		hover = "默认值"},
+			{description = "默认/Default",		data = 1,		hover = "默认值"},
 			{description = "150%", 				data = 1.5,		hover = "默认值的150%"},
 			{description = "200%", 				data = 2,		hover = "默认值的200%"},
 			{description = "250%", 				data = 2.5,		hover = "默认值的250%"},
@@ -70,12 +70,12 @@ configuration_options =             --配置选项
 	{
 	name = "max_weapon",
 	label = "武器耐久倍率",
-	hover = "不建议修改得太离谱",
+	hover = "Multiplier for Weapons 不建议修改得太离谱",
 	options =
 	{
 		{description = "20%", 				data = 0.2,		hover = "默认值的20%"},
 		{description = "50%", 				data = 0.5,		hover = "默认值的50%"},
-		{description = "默认", 	           	data = 1,		hover = "默认值"},
+		{description = "默认/Default",		data = 1,		hover = "默认值"},
 		{description = "150%", 				data = 1.5,		hover = "默认值的150%"},
 		{description = "200%", 				data = 2,		hover = "默认值的200%"},
 		{description = "250%", 				data = 2.5,		hover = "默认值的250%"},
@@ -89,11 +89,11 @@ configuration_options =             --配置选项
     {
         name = "green",
         label = "绿宝石装备",
-		hover = "模组是否对绿宝石装备生效，不建议开启，影响平衡",
+		hover = "Work on Greengem Equipments 是否对绿宝石装备生效",
         options =
         {
-            {description = "否", 	data = false, 	hover = "模组对绿宝石装备不生效"},
-			{description = "是", 	data = true, 	hover = "模组对绿宝石装备生效"},
+            {description = "否/NO", 	data = false, 	hover = "模组对绿宝石装备不生效"},
+			{description = "是/YES", 	data = true, 	hover = "模组对绿宝石装备生效，不建议开启，影响平衡"},
         },
         default = false,
     },
