@@ -49,18 +49,19 @@ end
 
 --护甲耐久	--在此处添加项目
 
-TUNING.ARMOR_SANITY					= TUNING.ARMOR_SANITY				* max_armor		--影甲
-TUNING.ARMOR_SKELETONHAT 			= TUNING.ARMOR_SKELETONHAT 			* max_armor		--骨头
-TUNING.ARMOR_RUINSHAT 				= TUNING.ARMOR_RUINSHAT 			* max_armor		--铥人头
-TUNING.ARMORRUINS 					= TUNING.ARMORRUINS 				* max_armor		--铥人甲
-TUNING.ARMOR_DREADSTONEHAT			= TUNING.ARMOR_DREADSTONEHAT		* max_armor		--绝望头
-TUNING.ARMORDREADSTONE				= TUNING.ARMORDREADSTONE			* max_armor		--绝望甲
-TUNING.ARMOR_LUNARPLANT_HAT			= TUNING.ARMOR_LUNARPLANT_HAT		* max_armor		--亮茄头
-TUNING.ARMOR_LUNARPLANT				= TUNING.ARMOR_LUNARPLANT			* max_armor		--亮茄甲
-TUNING.ARMOR_VOIDCLOTH_HAT			= TUNING.ARMOR_VOIDCLOTH_HAT		* max_armor		--虚空头
-TUNING.ARMOR_VOIDCLOTH				= TUNING.ARMOR_VOIDCLOTH			* max_armor		--虚空甲
-TUNING.ARMOR_WAGPUNK_HAT			= TUNING.ARMOR_WAGPUNK_HAT			* max_armor		--瓦格头
-TUNING.ARMORPUNK					= TUNING.ARMORPUNK					* max_armor		--瓦格甲
+TUNING.ARMOR_SANITY					= TUNING.ARMOR_SANITY					* max_armor		--影甲
+TUNING.ARMOR_SKELETONHAT 			= TUNING.ARMOR_SKELETONHAT 				* max_armor		--骨头
+TUNING.ARMOR_RUINSHAT 				= TUNING.ARMOR_RUINSHAT 				* max_armor		--铥人头
+TUNING.ARMORRUINS 					= TUNING.ARMORRUINS 					* max_armor		--铥人甲
+TUNING.ARMOR_DREADSTONEHAT			= TUNING.ARMOR_DREADSTONEHAT			* max_armor		--绝望头
+TUNING.ARMORDREADSTONE				= TUNING.ARMORDREADSTONE				* max_armor		--绝望甲
+TUNING.ARMOR_LUNARPLANT_HAT			= TUNING.ARMOR_LUNARPLANT_HAT			* max_armor		--亮茄头
+TUNING.ARMOR_LUNARPLANT				= TUNING.ARMOR_LUNARPLANT				* max_armor		--亮茄甲
+TUNING.ARMOR_VOIDCLOTH_HAT			= TUNING.ARMOR_VOIDCLOTH_HAT			* max_armor		--虚空头
+TUNING.ARMOR_VOIDCLOTH				= TUNING.ARMOR_VOIDCLOTH				* max_armor		--虚空甲
+TUNING.ARMOR_WAGPUNK_HAT			= TUNING.ARMOR_WAGPUNK_HAT				* max_armor		--瓦格头
+TUNING.ARMORPUNK					= TUNING.ARMORPUNK						* max_armor		--瓦格甲
+TUNING.ARMOR_WATHGRITHR_IMPROVEDHAT	= TUNING.ARMOR_WATHGRITHR_IMPROVEDHAT	* max_armor		--统帅头
 
 --武器耐久  --在此处添加项目
 
@@ -70,6 +71,10 @@ TUNING.NIGHTSWORD_USES				= TUNING.NIGHTSWORD_USES			* max_weapon	--影刀
 TUNING.STAFF_LUNARPLANT_USES		= TUNING.STAFF_LUNARPLANT_USES		* max_weapon	--亮茄杖
 TUNING.SWORD_LUNARPLANT_USES		= TUNING.SWORD_LUNARPLANT_USES		* max_weapon	--亮茄剑
 TUNING.VOIDCLOTH_SCYTHE_USES		= TUNING.VOIDCLOTH_SCYTHE_USES		* max_weapon	--暗影镰刀
+TUNING.SPEAR_WATHGRITHR_LIGHTNING_USES				= TUNING.SPEAR_WATHGRITHR_LIGHTNING_USES			* max_weapon	--奔雷矛
+TUNING.SPEAR_WATHGRITHR_LIGHTNING_CHARGED_USES		= TUNING.SPEAR_WATHGRITHR_LIGHTNING_CHARGED_USES	* max_weapon	--充能奔雷矛
+TUNING.WATHGRITHR_SHIELD_ARMOR		= TUNING.WATHGRITHR_SHIELD_ARMOR	* max_weapon	--武神盾
+
 
 --特殊情况
 
@@ -169,6 +174,11 @@ local refill_prefab_list =
 	"glasscutter",	--玻璃刀
 	"nightstick",	--晨星锤
 	"nightsword", "armor_sanity",	--影刀影甲
+	"bernie_inactive", "bernie_active", "bernie_big", --伯尼
+	"lighter",	 	--打火机
+	"spear_wathgrithr_lightning", "spear_wathgrithr_lightning_charged",	--奔雷矛
+	"wathgrithr_shield",		--武神盾
+	"wathgrithr_improvedhat",	--统帅头
 }
 
 for _, refill_prefab in pairs(refill_prefab_list) do
