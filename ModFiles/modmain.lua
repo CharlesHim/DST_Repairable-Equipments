@@ -170,15 +170,15 @@ local refill_prefab_list =
 	"lunarplanthat", "armor_lunarplant", "sword_lunarplant", "staff_lunarplant",	--亮茄四件套
 	"voidclothhat", "armor_voidcloth", "voidcloth_scythe",							--虚空三件套
 	"wagpunkhat", "armorwagpunk",	--瓦格朋克套
-	"batbat",		--蝙蝠棒
-	"glasscutter",	--玻璃刀
-	"nightstick",	--晨星锤
+	"batbat",			--蝙蝠棒
+	"glasscutter",		--玻璃刀
+	"nightstick",		--晨星锤
 	"nightsword", "armor_sanity",	--影刀影甲
-	"bernie_inactive", "bernie_active", "bernie_big", --伯尼
-	"lighter",	 	--打火机
+	"bernie_inactive",	--伯尼
+	"lighter",	 		--打火机
 	"spear_wathgrithr_lightning", "spear_wathgrithr_lightning_charged",	--奔雷矛
-	"wathgrithr_shield",		--武神盾
-	"wathgrithr_improvedhat",	--统帅头
+	"wathgrithr_shield",			--武神盾
+	"wathgrithr_improvedhat",		--统帅头
 }
 
 for _, refill_prefab in pairs(refill_prefab_list) do
