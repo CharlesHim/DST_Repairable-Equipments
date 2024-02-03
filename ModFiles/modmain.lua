@@ -1,11 +1,3 @@
---写给想修改这个mod的小可爱的修改指南
---@瑶光 @2023.12.09
---改耐久：约第30行
---添加填充物：约第90行、230行
---添加被填充的道具：约第150行
-
-
-
 
 
 local TUNING = GLOBAL.TUNING
@@ -13,6 +5,9 @@ local ACTIONS = GLOBAL.ACTIONS
 local SpawnPrefab = GLOBAL.SpawnPrefab
 local Vector3 = GLOBAL.Vector3
 local DEGREES = GLOBAL.DEGREES
+local TECH = GLOBAL.TECH
+local UPGRADETYPES = GLOBAL.UPGRADETYPES
+
 
 local maximum_use = GetModConfigData("maximum") or 1
 local work_on_green = GetModConfigData("green")
@@ -82,7 +77,7 @@ TUNING.WATHGRITHR_SHIELD_ARMOR		= TUNING.WATHGRITHR_SHIELD_ARMOR	* max_weapon	--
 TUNING.NIGHTSTICK_FUEL 				= 30 * 16 							* max_weapon	--晨星锤
 
 --玻璃刀修改后写似乎有问题，先删掉，后面有时间再看看吧
---TUNING.GLASSCUTTER.USES			= TUNING.GLASSCUTTER.USES			* max_weapon	--玻璃刀
+TUNING.GLASSCUTTER.USES			= TUNING.GLASSCUTTER.USES			* max_weapon	--玻璃刀
 
 
 
@@ -176,7 +171,7 @@ local refill_prefab_list =
 	"nightsword", "armor_sanity",	--影刀影甲
 	"bernie_inactive",	--伯尼
 	"lighter",	 		--打火机
-	"spear_wathgrithr_lightning", "spear_wathgrithr_lightning_charged",	--奔雷矛
+	"spear_wathgrithr_lightning", "spear_wathgrithr_lightning_charged",	--奔雷矛 充能矛
 	"wathgrithr_shield",			--武神盾
 	"wathgrithr_improvedhat",		--统帅头
 }
@@ -207,7 +202,7 @@ if work_on_green then
 			end
 		end
 	end)
-	--偷工减料许可证
+	--偷工减料护符
 	AddPrefabPostInit("greenamulet", function(inst)
 		if GLOBAL.TheWorld.ismastersim then
 			if inst.components.trader == nil then
@@ -234,6 +229,31 @@ AddPrefabPostInit("yellowamulet", function(inst)
 end)
 
 
+--修复无法充能奔雷矛的bug：添加合成配方
+local skilltree_defs = require("prefabs/skilltree_defs")
+--修改女武神技能树
+skilltree_defs.SKILLTREE_DEFS["wathgrithr"].wathgrithr_arsenal_spear_5.onactivate = function(inst)
+	inst:AddTag(UPGRADETYPES.SPEAR_LIGHTNING.."_upgradeuser")
+	inst:AddTag("spearwathgrithrlightningchargedmaker")	--新增：添加“充能矛制作者”标签
+end
+skilltree_defs.SKILLTREE_DEFS["wathgrithr"].wathgrithr_arsenal_spear_5.ondeactivate = function(inst)
+	inst:RemoveTag(UPGRADETYPES.SPEAR_LIGHTNING.."_upgradeuser")
+	inst:RemoveTag("spearwathgrithrlightningchargedmaker")	--新增：移除“充能矛制作者”标签
+end
+--添加技能树解锁的合成配方
+AddCharacterRecipe(
+	"spear_wathgrithr_lightning_charged",	
+	{
+		Ingredient("spear_wathgrithr_lightning", 1), 
+		Ingredient("moonstorm_static_item", 1)
+	},								
+	TECH.NONE,		
+	{
+		builder_tag = "spearwathgrithrlightningchargedmaker"
+	},
+	{"CHARACTER", "WEAPONS"}
+)
+
 
 -----------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------
@@ -245,6 +265,7 @@ local trade_prefab_list =
 	"horrorfuel",		--纯净恐惧
 	"purebrilliance",	--纯粹辉煌
 }
+
 
 for _, trade_prefab in pairs(trade_prefab_list) do
 	AddPrefabPostInit(trade_prefab, function(inst)
