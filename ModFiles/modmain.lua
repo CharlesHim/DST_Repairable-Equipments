@@ -1,5 +1,9 @@
 
 
+-- 定义一个元表，用于从全局环境查找键值
+GLOBAL.setmetatable(env, {__index = function(t, k) return GLOBAL.rawget(GLOBAL, k) end})
+
+
 local TUNING = GLOBAL.TUNING
 local ACTIONS = GLOBAL.ACTIONS
 local SpawnPrefab = GLOBAL.SpawnPrefab
@@ -10,11 +14,15 @@ local UPGRADETYPES = GLOBAL.UPGRADETYPES
 
 
 local maximum_use = GetModConfigData("maximum") or 1
-local work_on_green = GetModConfigData("green")
+local work_on_green = GetModConfigData("work_on_green_gem_equipments")
 local max_armor = GetModConfigData("max_armor")
 local max_weapon = GetModConfigData("max_weapon")
+local no_box_drop = GetModConfigData("dont_drop_box_on_open")
+local force_wet = GetModConfigData("force_wet")
 
 
+
+--最大耐久修改功能============================================================================================================
 
 --道具耐久  --在此处添加项目
 
@@ -81,7 +89,7 @@ TUNING.GLASSCUTTER.USES			= TUNING.GLASSCUTTER.USES			* max_weapon	--玻璃刀
 
 
 
---充能
+--耐久修补功能=============================================================================================================
 	
 local function accept_test(inst, item)
 	return item ~= nil and (
@@ -135,13 +143,7 @@ end
 				-------------------------------------------------------------------------
 
 
-
-
-
---修改预制件
-
------------------------------------------------------------------------------------
------------------------------------------------------------------------------------
+--修改预制件-------------------------------------------------------------------
 
 --在此处添加允许接受燃料的东西
 local refill_prefab_list = 
@@ -254,9 +256,7 @@ AddCharacterRecipe(
 	{"CHARACTER", "WEAPONS"}
 )
 
-
------------------------------------------------------------------------------------
------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
 
 --在此处添加用于填充的燃料
 local trade_prefab_list = 
@@ -275,4 +275,31 @@ for _, trade_prefab in pairs(trade_prefab_list) do
 			end
 		end
 	end)
+end
+
+
+
+--开箱不掉落===========================================================================================================
+
+--偷师自https://steamcommunity.com/sharedfiles/filedetails/?id=3113662010
+
+local function disableDropOnOpen(inst)
+    if TheWorld.ismastersim then
+        inst.components.container.droponopen = false
+    end
+end
+
+local inventory_container_prefabs = 
+{
+    "battlesong_container",
+    "tacklecontainer",
+    "supertacklecontainer",
+	"beargerfur_sack",
+	"alterguardianhatshard"
+}
+
+if no_box_drop then
+	for _, v in pairs(inventory_container_prefabs) do
+		AddPrefabPostInit(v, disableDropOnOpen)
+	end
 end
