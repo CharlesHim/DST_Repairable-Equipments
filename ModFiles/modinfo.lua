@@ -6,7 +6,7 @@ local update_date = "2024.2.4"
 
 
 local cn_name = "装备可修复" 
-local en_name = "Equipment Repair"
+local en_name = "Repairable Equipments"
 
 local cn_desc = [[
 	- 用噩梦燃料、纯粹辉煌、纯净恐惧为特定装备填充耐久至99% 
