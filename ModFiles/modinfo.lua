@@ -1,8 +1,8 @@
 --维护指南
 --@瑶光 @2023.12.09
 --上传前务必修改版本号、更新日期
-version = "3.2.0"                   --版本号，每次更新必须改
-local update_date = "2024.2.4"
+version = "3.2.1"                   --版本号，每次更新必须改
+local update_date = "2024.2.14"
 
 
 local cn_name = "装备可修复" 
@@ -53,6 +53,7 @@ all_clients_require_mod = true      --所有客户端都需要该模组
 
 icon_atlas = "modicon.xml"          --图标
 icon = "modicon.tex"
+server_filter_tags = {"gekko repair"}
 
 configuration_options =             --配置选项
 {
