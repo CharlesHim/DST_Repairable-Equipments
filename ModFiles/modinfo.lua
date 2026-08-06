@@ -1,15 +1,15 @@
 --维护指南
 --@瑶光 @2023.12.09
 --上传前务必修改版本号、更新日期
-version = "3.3.0"                   --版本号，每次更新必须改
-local update_date = "2024.7.10"
+version = "4.0.0"                   --版本号，每次更新必须改
+local update_date = "2026.08.06"          --更新日期，每次更新必须改
 
 
 local cn_name = "装备可修复" 
 local en_name = "Repairable Equipments"
 
 local cn_desc = [[
-	- 用噩梦燃料、纯粹辉煌、纯净恐惧为特定装备填充耐久至99% 
+	- 用噩梦燃料、纯粹辉煌、纯净恐惧、沃托克斯的灵魂、威洛的余烬为特定装备填充耐久至99% 
 	- 包括但不限于法杖、护符、玻璃刀，暗影、铥、亮茄、虚空、绝望石装备……
 	- 懒得挨个写了，自己试吧，有啥建议可以评论区留言
 	- 设置里可以修改是否允许填充绿宝石装备的耐久 
@@ -18,7 +18,7 @@ local cn_desc = [[
 	- 最近更新：
 ]]
 local en_desc = [[
-	- Fill the durability of specific equipment to 99% with Nightmare Fuel, Pure Horror, Pure Brilliance.
+	- Fill the durability of specific equipment to 99% with Nightmare Fuel, Pure Horror, Pure Brilliance, Wortox's Soul, and Willow's Ember.
 	- Works on staffs, amulets, glasscuttrt, shadow, ancitent, brightshade, void, nightmare, dreadstone equipments...
 	- I'm lazy to write it all, have a try or check the source code.
 	- Any suggestions can be left in the comment section.
@@ -74,7 +74,7 @@ configuration_options =             --配置选项
             {description = "500%", 				data = 5,		hover = "默认值的500%"},
 			{description = "1000%", 			data = 10,		hover = "默认值的1000%"},
         },
-        default = 2,
+        default = 5,
 	},
 	{
 		name = "max_armor",

@@ -39,6 +39,8 @@ TUNING.YELLOWAMULET_FUEL 			= TUNING.YELLOWAMULET_FUEL 			* maximum_use	--魔光
 TUNING.ORANGEAMULET_USES 			= TUNING.ORANGEAMULET_USES 			* maximum_use	--懒人~
 TUNING.MULTITOOL_AXE_PICKAXE_USES 	= TUNING.MULTITOOL_AXE_PICKAXE_USES	* maximum_use	--斧镐
 TUNING.TORNADOSTAFF_USES 			= TUNING.TORNADOSTAFF_USES 			* maximum_use	--风杖
+TUNING.BEESWAX_SPRAY_USES 			= TUNING.BEESWAX_SPRAY_USES 		* maximum_use	--防腐喷雾
+TUNING.HERMITCRAB_SHELL_USES		= TUNING.HERMITCRAB_SHELL_USES		* maximum_use	--搬运海螺
 
 --特殊：按时间计算的
 TUNING.VOIDCLOTH_UMBRELLA_PERISHTIME= 30 * 16 *15						* maximum_use	--虚空伞
@@ -77,6 +79,7 @@ TUNING.VOIDCLOTH_SCYTHE_USES		= TUNING.VOIDCLOTH_SCYTHE_USES		* max_weapon	--暗
 TUNING.SPEAR_WATHGRITHR_LIGHTNING_USES				= TUNING.SPEAR_WATHGRITHR_LIGHTNING_USES			* max_weapon	--奔雷矛
 TUNING.SPEAR_WATHGRITHR_LIGHTNING_CHARGED_USES		= TUNING.SPEAR_WATHGRITHR_LIGHTNING_CHARGED_USES	* max_weapon	--充能奔雷矛
 TUNING.WATHGRITHR_SHIELD_ARMOR		= TUNING.WATHGRITHR_SHIELD_ARMOR	* max_weapon	--武神盾
+TUNING.VOIDCLOTH_BOOMERANG_USES = TUNING.VOIDCLOTH_BOOMERANG_USES * max_weapon			--暗影回旋镖
 
 
 --特殊情况
@@ -87,6 +90,8 @@ TUNING.NIGHTSTICK_FUEL 				= 30 * 16 							* max_weapon	--晨星锤
 --玻璃刀修改后写似乎有问题，先删掉，后面有时间再看看吧
 TUNING.GLASSCUTTER.USES			= TUNING.GLASSCUTTER.USES			* max_weapon	--玻璃刀
 
+TUNING.SHADOW_BATTLEAXE.USES		= TUNING.SHADOW_BATTLEAXE.USES		* max_weapon	--暗影槌
+
 
 
 --耐久修补功能=============================================================================================================
@@ -95,7 +100,9 @@ local function accept_test(inst, item)
 	return item ~= nil and (
 		(item.prefab == "nightmarefuel") or 
 		(item.prefab == "horrorfuel") or 
-		(item.prefab == "purebrilliance")		--改这里
+		(item.prefab == "purebrilliance") or
+		(item.prefab == "wortox_soul") or
+		(item.prefab == "willow_ember")		--改这里
 	)
 end
 
@@ -103,7 +110,9 @@ local function on_accept(inst, giver, item)
 	if item ~= nil and (
 		(item.prefab == "nightmarefuel") or 	--改这里
 		(item.prefab == "horrorfuel") or 
-		(item.prefab == "purebrilliance")
+		(item.prefab == "purebrilliance") or
+		(item.prefab == "wortox_soul") or
+		(item.prefab == "willow_ember")
 		) then
 		if (inst.components.finiteuses ~= nil) or (inst.components.fueled ~= nil) or (inst.components.armor ~= nil) then
 			giver.SoundEmitter:PlaySound("dontstarve/common/nightmareAddFuel")
@@ -176,18 +185,27 @@ local refill_prefab_list =
 	"spear_wathgrithr_lightning", "spear_wathgrithr_lightning_charged",	--奔雷矛 充能矛
 	"wathgrithr_shield",			--武神盾
 	"wathgrithr_improvedhat",		--统帅头
+	"voidcloth_boomerang",			--暗影回旋镖
+	"beeswax_spray",				--防腐喷雾
+	"shadow_battleaxe",				--暗影槌
+	"hermitcrab_shell",				--搬运海螺
+	"icestaff2",					--闪冻魔杖
+	"icestaff3",					--深冻魔杖
+
 }
 
 for _, refill_prefab in pairs(refill_prefab_list) do
-	AddPrefabPostInit(refill_prefab, function(inst)
-		if GLOBAL.TheWorld.ismastersim then
-			if inst.components.trader == nil then
-				inst:AddComponent("trader")
-				inst.components.trader:SetAbleToAcceptTest(accept_test)
-				inst.components.trader.onaccept = on_accept
+	if refill_prefab ~= nil then
+		AddPrefabPostInit(refill_prefab, function(inst)
+			if GLOBAL.TheWorld.ismastersim then
+				if inst.components.trader == nil then
+					inst:AddComponent("trader")
+					inst.components.trader:SetAbleToAcceptTest(accept_test)
+					inst.components.trader.onaccept = on_accept
+				end
 			end
-		end
-	end)
+		end)
+	end
 end
 
 --以下为例外
@@ -264,6 +282,8 @@ local trade_prefab_list =
 	"nightmarefuel",	--噩梦燃料
 	"horrorfuel",		--纯净恐惧
 	"purebrilliance",	--纯粹辉煌
+	"wortox_soul",		--沃托克斯的灵魂
+	"willow_ember",		--威洛的余烬
 }
 
 
