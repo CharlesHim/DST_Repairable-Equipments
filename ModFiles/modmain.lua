@@ -41,6 +41,7 @@ TUNING.MULTITOOL_AXE_PICKAXE_USES 	= TUNING.MULTITOOL_AXE_PICKAXE_USES	* maximum
 TUNING.TORNADOSTAFF_USES 			= TUNING.TORNADOSTAFF_USES 			* maximum_use	--风杖
 TUNING.BEESWAX_SPRAY_USES 			= TUNING.BEESWAX_SPRAY_USES 		* maximum_use	--防腐喷雾
 TUNING.HERMITCRAB_SHELL_USES		= TUNING.HERMITCRAB_SHELL_USES		* maximum_use	--搬运海螺
+TUNING.PANFLUTE_USES				= TUNING.PANFLUTE_USES				* maximum_use	--排箫
 
 --特殊：按时间计算的
 TUNING.VOIDCLOTH_UMBRELLA_PERISHTIME= 30 * 16 *15						* maximum_use	--虚空伞
@@ -191,6 +192,7 @@ local refill_prefab_list =
 	"hermitcrab_shell",				--搬运海螺
 	"icestaff2",					--闪冻魔杖
 	"icestaff3",					--深冻魔杖
+	"panflute",						--排箫
 
 }
 
