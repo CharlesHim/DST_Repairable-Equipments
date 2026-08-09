@@ -203,9 +203,9 @@ for _, refill_prefab in pairs(refill_prefab_list) do
 			if GLOBAL.TheWorld.ismastersim then
 				if inst.components.trader == nil then
 					inst:AddComponent("trader")
-					inst.components.trader:SetAbleToAcceptTest(accept_test)
-					inst.components.trader.onaccept = on_accept
 				end
+				inst.components.trader:SetAbleToAcceptTest(accept_test)
+				inst.components.trader.onaccept = on_accept
 			end
 		end)
 	end
@@ -220,9 +220,9 @@ if work_on_green then
 		if GLOBAL.TheWorld.ismastersim then
 			if inst.components.trader == nil then
 				inst:AddComponent("trader")
-				inst.components.trader:SetAbleToAcceptTest(accept_test)
-				inst.components.trader.onaccept = on_accept
 			end
+			inst.components.trader:SetAbleToAcceptTest(accept_test)
+			inst.components.trader.onaccept = on_accept
 		end
 	end)
 	--偷工减料护符
@@ -230,9 +230,9 @@ if work_on_green then
 		if GLOBAL.TheWorld.ismastersim then
 			if inst.components.trader == nil then
 				inst:AddComponent("trader")
-				inst.components.trader:SetAbleToAcceptTest(accept_test)
-				inst.components.trader.onaccept = on_accept
 			end
+			inst.components.trader:SetAbleToAcceptTest(accept_test)
+			inst.components.trader.onaccept = on_accept
 		end
 	end)
 end
@@ -245,9 +245,9 @@ AddPrefabPostInit("yellowamulet", function(inst)
 		end
 		if inst.components.trader == nil then
 			inst:AddComponent("trader")
-			inst.components.trader:SetAbleToAcceptTest(accept_test)
-			inst.components.trader.onaccept = on_accept
 		end
+		inst.components.trader:SetAbleToAcceptTest(accept_test)
+		inst.components.trader.onaccept = on_accept
 	end
 end)
 
